@@ -70,7 +70,7 @@ function parseFilterString(filterString: string): { [key: string]: string | stri
 }
 
 const Home = () => {
-  const [searchParam, setSearachParam] = useSearchParams();
+  const [searchParam, setSearchParam] = useSearchParams();
   const filterList = parseFilterString(searchParam.toString());
   console.log(filterList);
   const brands: string[] = ["PetSmart", "Amazon", "Nike", "Walmart"];
@@ -95,7 +95,7 @@ const Home = () => {
   const handlePageChange = (page: number) => {
     if (page > 0) {
       setCurrentPage(page);
-      setSearachParam(`page=${page}`);
+      setSearchParam(`page=${page}`);
     }
   };
 
@@ -105,7 +105,7 @@ const Home = () => {
   const handleSearch = (e: any) => {
     e.preventDefault();
     if (searchQuery.length) {
-      setSearachParam(`&searchTerm=${searchQuery}`);
+      setSearchParam(`&searchTerm=${searchQuery}`);
     }
   };
 
@@ -122,10 +122,10 @@ const Home = () => {
     if (priceRange.length === 1 && priceRange[0] > 0) {
       queyParam += `${queyParam ? "&" : ""}price=${priceRange[0]}`;
     }
-    setSearachParam(queyParam);
+    setSearchParam(queyParam);
   };
   const handleClear = () => {
-    setSearachParam("");
+    setSearchParam("");
     setSelectedBrands([]);
     setSelectedCategories([]);
   };
